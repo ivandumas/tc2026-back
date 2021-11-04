@@ -1,0 +1,34 @@
+{
+  "name": "tc2026-back",
+  "version": "1.0.0",
+  "description": "Back end segundo parcial, equipoDinamita",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivandumas/tc2026-back.git"
+  },
+  "keywords": [
+    "backend",
+    "ponganos100",
+    "equipoDinamita",
+    "webdevelopment",
+    "tc2026"
+  ],
+  "author": "ASD, JAVS, IADM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivandumas/tc2026-back/issues"
+  },
+  "homepage": "https://github.com/ivandumas/tc2026-back#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
