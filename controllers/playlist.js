@@ -1,19 +1,18 @@
 const path = require('path')
-const Museo = require('../utils/database').models.museo
+const Playlist = require('../utils/database').models.playlist
 
-exports.postAgregarMuseo = (req, res) => {
+exports.postAgregarPlaylist = (req, res) => {
     console.log(req.body)
-    Museo.findOne({
+    Playlist.findOne({
         where: {
             nombre: req.body.nombre,
-            ubicacion: req.body.ubicacion,
         },
     }).then((found) => {
         if (found === null) {
-            if (req.body.descripcion.value.length > 9 && req.body.descripcion.value.length < 251) {
-            Museo.create(req.body)
+            if (req.body.nombre.value.length > 4 && req.body.nombre.value.length < 51) {
+            Playlist.create(req.body)
                 .then((result) => {
-                    console.log('Museo agregado exitosamente')
+                    console.log('Playlist agregada exitosamente')
                     res.json({status: 200, estado: 'aceptado' })
                 })
                 .catch((err) => {
@@ -21,21 +20,21 @@ exports.postAgregarMuseo = (req, res) => {
                     res.json({ estado: 'error' })
                 })
             } else {
-                console.log('Description must be between 10 and 250 characters')
+                console.log('Title must be between 5 and 50 characters')
                 res.json({status: 422, codigo: "InvalidBodyException"})
             }
         } else {
-            console.log('El registro de este Museo ya existe')
+            console.log('El registro de esta película ya existe')
             res.json({ estado: 'ya existe' })
         }
     })
 }
 
-exports.getObtenerMuseos = (req, res) => {
-    Museo.findAll()
-        .then((museos) => {
-            console.log(museos)
-            res.json({status: 200, museos})
+exports.getObtenerPlaylists = (req, res) => {
+    Playlist.findAll()
+        .then((playlists) => {
+            console.log(playlists)
+            res.json({status: 200, playlists})
         })
         .catch((err) => {
             console.log(err)
@@ -43,15 +42,15 @@ exports.getObtenerMuseos = (req, res) => {
         })
 }
 
-exports.postBorrarMuseo = (req, res) => {
+exports.postBorrarPlaylist = (req, res) => {
     console.log(req.body)
-    Museo.destroy({
+    Playlist.destroy({
         where: {
             id: req.body.id,
         },
     })
         .then(() => {
-            console.log('Museo eliminado'),
+            console.log('Playlist eliminada'),
                 res.json({ estado: 'aceptado' })
         })
         .catch((err) => {
@@ -60,9 +59,9 @@ exports.postBorrarMuseo = (req, res) => {
         })
 }
 
-exports.postActualizarMuseo = (req, res) => {
+exports.postActualizarPlaylist = (req, res) => {
     console.log(req.body)
-    Museo.update(
+    Playlist.update(
         {
             nombre: req.body.nombre,
         },
@@ -73,7 +72,7 @@ exports.postActualizarMuseo = (req, res) => {
         }
     )
         .then(() => {
-            console.log('Museo actualizado')
+            console.log('Playlist actualizada')
             res.json({ estado: 'aceptado' })
         })
         .catch((err) => {

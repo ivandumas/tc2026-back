@@ -1,19 +1,19 @@
 const path = require('path')
-const Museo = require('../utils/database').models.museo
+const Pelicula = require('../utils/database').models.pelicula
 
-exports.postAgregarMuseo = (req, res) => {
+exports.postAgregarPelicula = (req, res) => {
     console.log(req.body)
-    Museo.findOne({
+    Pelicula.findOne({
         where: {
             nombre: req.body.nombre,
             ubicacion: req.body.ubicacion,
         },
     }).then((found) => {
         if (found === null) {
-            if (req.body.descripcion.value.length > 9 && req.body.descripcion.value.length < 251) {
-            Museo.create(req.body)
+            if (req.body.nombre.value.length > 4 && req.body.nombre.value.length < 51) {
+            Pelicula.create(req.body)
                 .then((result) => {
-                    console.log('Museo agregado exitosamente')
+                    console.log('Pelicula agregada exitosamente')
                     res.json({status: 200, estado: 'aceptado' })
                 })
                 .catch((err) => {
@@ -21,21 +21,21 @@ exports.postAgregarMuseo = (req, res) => {
                     res.json({ estado: 'error' })
                 })
             } else {
-                console.log('Description must be between 10 and 250 characters')
+                console.log('Title must be between 5 and 50 characters')
                 res.json({status: 422, codigo: "InvalidBodyException"})
             }
         } else {
-            console.log('El registro de este Museo ya existe')
+            console.log('El registro de esta película ya existe')
             res.json({ estado: 'ya existe' })
         }
     })
 }
 
-exports.getObtenerMuseos = (req, res) => {
-    Museo.findAll()
-        .then((museos) => {
-            console.log(museos)
-            res.json({status: 200, museos})
+exports.getObtenerPeliculas = (req, res) => {
+    Pelicula.findAll()
+        .then((peliculas) => {
+            console.log(peliculas)
+            res.json({status: 200, peliculas})
         })
         .catch((err) => {
             console.log(err)
@@ -43,15 +43,15 @@ exports.getObtenerMuseos = (req, res) => {
         })
 }
 
-exports.postBorrarMuseo = (req, res) => {
+exports.postBorrarPelicula = (req, res) => {
     console.log(req.body)
-    Museo.destroy({
+    Pelicula.destroy({
         where: {
             id: req.body.id,
         },
     })
         .then(() => {
-            console.log('Museo eliminado'),
+            console.log('Pelicula eliminada'),
                 res.json({ estado: 'aceptado' })
         })
         .catch((err) => {
@@ -60,9 +60,9 @@ exports.postBorrarMuseo = (req, res) => {
         })
 }
 
-exports.postActualizarMuseo = (req, res) => {
+exports.postActualizarPelicula = (req, res) => {
     console.log(req.body)
-    Museo.update(
+    Pelicula.update(
         {
             nombre: req.body.nombre,
         },
@@ -73,7 +73,7 @@ exports.postActualizarMuseo = (req, res) => {
         }
     )
         .then(() => {
-            console.log('Museo actualizado')
+            console.log('Pelicula actualizada')
             res.json({ estado: 'aceptado' })
         })
         .catch((err) => {

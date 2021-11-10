@@ -6,9 +6,9 @@ function applyRelationship(sequelize) {
     const Playlist = sequelize.models.playlist
 
     //Un videojuego puede jugarse en una o muchas consolas
-    Videojuego.belongsToMany(Consola,{through:ConsolaVideojuego}) //Crea una tabla intermedia y genera la llave foranea dentro de ella
+    Museo.belongsToMany(Pelicula,{through:Playlist}) //Crea una tabla intermedia y genera la llave foranea dentro de ella
     //Una consola tiene uno o muchos videojuegos
-    Consola.belongsToMany(Videojuego,{through:ConsolaVideojuego}) //Crea una tabla intermedia y genera la llave foranea dentro de ella
+    Pelicula.belongsToMany(Museo,{through:Playlist}) //Crea una tabla intermedia y genera la llave foranea dentro de ella
 
     //Si tuvieras una relacion uno a muchos
     /*Supuesto obtener una tabla trofeo 
