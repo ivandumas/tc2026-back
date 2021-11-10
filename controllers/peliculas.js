@@ -18,7 +18,7 @@ exports.postAgregarPelicula = (req, res) => {
                 })
                 .catch((err) => {
                     console.log(err)
-                    res.json({ estado: 'error' })
+                    res.json({status: 200, estado: 'error' })
                 })
             } else {
                 console.log('Title must be between 5 and 50 characters')
@@ -56,7 +56,7 @@ exports.postBorrarPelicula = (req, res) => {
         })
         .catch((err) => {
             console.log(err)
-            res.json({ estado: 'error' })
+            res.json({status: 500, estado: 'error' })
         })
 }
 
