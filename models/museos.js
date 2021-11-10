@@ -17,6 +17,9 @@ const Museo = (sequelize)=>{
         },
         descripcion:{
             type: Sequelize.STRING(1000)
+        },
+        costo: {
+            tye: Sequelize.INTEGER
         }
     })
 }
