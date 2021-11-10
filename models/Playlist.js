@@ -8,6 +8,10 @@ const Playlist = (sequelize)=>{
             primaryKey: true,
             allowIncrement: true
         },
+        nombre:{
+            type: Sequelize.STRING(50),
+            allowNull:false
+        },
         idPelicula:{
             type: Sequelize.INTEGER,
             allowNull: true,
