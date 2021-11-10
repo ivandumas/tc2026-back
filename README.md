@@ -57,4 +57,35 @@ Este servicio busca instancias del elemento museo dentro de la base de datos
 * **response:** Http status 200
 
 ## Update 
+Este servicio actualiza instancias ya creadas del elemento resguardadas dentro de la base de datos
+
+* **método:** `POST`
+
+* **body:** JSON de ejemplo
+
+* **errors:**
+
+| Message | Http |
+|---------|------|
+|There are no records in the database| 500 |
+
+* **response:** Http status 200
 ## Delete
+Este servicio elimina instancias del elemento resguardado dentro de la base de datos a partir del id del elemento
+
+* **método:** `POST`
+
+* **validaciones:**
+
+| Campo	| Validación |
+|-------|------------|
+|id|Debe existir el id|
+
+* **errors:**
+
+| Message | Http |
+|---------|------|
+|There are no records in the database| 500 |
+
+* **response:** Http status 200
+
