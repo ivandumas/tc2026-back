@@ -4,6 +4,7 @@ const path = require("path")
 //const bodyParser = require("body-parser")
 const mRoutes = require('./routes/museos')
 const pRoutes = require('./routes/peliculas')
+const plRoutes = require('./routes/playlist')
 const sequelize = require('./utils/database')
 //Creación de la aplicación web
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use("/museos",mRoutes);
 app.use("/peliculas",pRoutes);
+app.use("/playlist",plRoutes)
 
 //Que la aplicación escuche peticiones
 sequelize.sync()
